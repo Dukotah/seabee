@@ -21,7 +21,7 @@ SERVICE_PATH = /etc/systemd/system/$(SERVICE)
 
 CONFIG_PATH = /etc/seabee/config.yaml
 
-.PHONY: default_target clean all release daemon-run daemon-enable install-ci install install-release-ci install-release run run-release enable enable-release test test-ci test-release test-release-ci fmt clippy ci docs update
+.PHONY: default_target clean all release daemon-run daemon-enable install-ci install install-release-ci install-release run run-release enable enable-release test test-ci test-release test-release-ci fmt clippy ci docs update check-env wsl-setup
 
 default_target: all
 
@@ -124,3 +124,11 @@ docs:
 # update dependencies
 update:
 	@./scripts/update_dependencies.sh
+
+# print a go/no-go table of what SeaBee needs from this machine
+check-env:
+	@./scripts/check_env.sh
+
+# take a fresh Ubuntu WSL2 distribution to a SeaBee build
+wsl-setup:
+	@./scripts/wsl_setup.sh
